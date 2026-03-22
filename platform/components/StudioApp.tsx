@@ -3,6 +3,7 @@
 import { useState, useCallback, useId } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import type { LucideIcon } from "lucide-react";
 import {
   Building2,
   LayoutList,
@@ -51,7 +52,7 @@ import type {
 
 const AGENT_CONFIG: Record<
   string,
-  { name: string; color: string; Icon: React.FC<{ size?: number; strokeWidth?: number }> }
+  { name: string; color: string; Icon: LucideIcon }
 > = {
   "social-chief": { name: "Social Chief", color: "#7F77DD", Icon: Network },
   "gary-vee": { name: "Gary Vee", color: "#BA7517", Icon: TrendingUp },
@@ -72,7 +73,7 @@ const CONTENT_TYPES: {
   id: ContentType;
   label: string;
   desc: string;
-  Icon: React.FC<{ size?: number }>;
+  Icon: LucideIcon;
 }[] = [
   { id: "single_post", label: "Post único", desc: "Feed post com imagem + legenda", Icon: ImageIcon },
   { id: "carousel", label: "Carrossel", desc: "Multi-slide educativo ou storytelling", Icon: Layers },
@@ -712,7 +713,6 @@ function CreateStep({
               >
                 <ct.Icon
                   size={20}
-                  // @ts-expect-error — optional prop
                   strokeWidth={1.8}
                   style={{
                     color: isSelected ? "var(--accent)" : "var(--text-secondary)",
