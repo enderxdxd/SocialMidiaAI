@@ -1,0 +1,54 @@
+workflow:
+  id: wf-visual-identity-setup
+  name: "Setup de Identidade Visual para Redes Sociais"
+  trigger: "*setup-identity"
+  entry_agent: social-chief
+  estimated_duration: "2-4 hours"
+  description: |
+    Workflow para definir a identidade visual completa de uma marca para redes sociais,
+    incluindo tipografia, cores, estilo de ilustração, templates e prompt templates.
+
+  type: sequential
+  phases:
+    - id: phase_1_brand
+      name: "Brand Foundation"
+      agent: chris-do
+      cross_squad: brand-chief
+      description: "Analyze brand DNA, positioning, and visual principles"
+      outputs: [brand_analysis, visual_principles]
+
+    - id: phase_2_typography
+      name: "Typography System"
+      agent: chris-do
+      depends_on: [phase_1_brand]
+      outputs: [type_system, font_pairings]
+
+    - id: phase_3_color
+      name: "Color System"
+      agent: chris-do
+      depends_on: [phase_1_brand]
+      outputs: [color_palette, color_rules]
+
+    - id: phase_4_illustration
+      name: "Illustration Style"
+      agent: tubik-studio
+      depends_on: [phase_2_typography, phase_3_color]
+      outputs: [illustration_style_guide]
+
+    - id: phase_5_local
+      name: "Local Market Adaptation"
+      agent: rafaela-costa
+      depends_on: [phase_4_illustration]
+      outputs: [local_adaptations]
+
+    - id: phase_6_templates
+      name: "Template System"
+      agent: post-designer
+      depends_on: [phase_5_local]
+      outputs: [post_templates, carousel_templates, story_templates]
+
+    - id: phase_7_prompts
+      name: "AI Prompt Templates"
+      agent: prompt-engineer
+      depends_on: [phase_6_templates]
+      outputs: [prompt_templates, negative_prompt_base]

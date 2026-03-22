@@ -1,0 +1,51 @@
+routing_catalog:
+  version: "1.0.0"
+  domains:
+    single_post:
+      keywords: ["post", "feed post", "imagem", "visual", "photo", "single post", "post para instagram"]
+      primary: post-designer
+      secondary: prompt-engineer
+      workflow: wf-post-creation
+    carousel:
+      keywords: ["carrossel", "carousel", "slides", "swipe", "post com várias páginas", "educational post"]
+      primary: carousel-architect
+      secondary: post-designer
+      workflow: wf-post-creation
+    stories:
+      keywords: ["stories", "story", "insta story", "stories instagram", "story sequence"]
+      primary: post-designer
+      secondary: caption-writer
+    reel_cover:
+      keywords: ["reel cover", "capa de reel", "thumbnail reel", "reels", "tiktok cover"]
+      primary: post-designer
+      secondary: prompt-engineer
+    thumbnail:
+      keywords: ["thumbnail", "miniatura", "capa youtube", "youtube thumbnail"]
+      primary: post-designer
+      secondary: chris-do
+    content_strategy:
+      keywords: ["estratégia", "content strategy", "calendário", "frequência", "engajamento", "pillar"]
+      primary: gary-vee
+      secondary: ste-davies
+    visual_identity:
+      keywords: ["identidade visual", "visual identity", "brand guide", "paleta", "tipografia", "template"]
+      primary: chris-do
+      secondary: tubik-studio
+      workflow: wf-visual-identity-setup
+    reference_analysis:
+      keywords: ["referência", "reference", "inspiração", "benchmark", "análise visual", "moodboard"]
+      primary: mike-winkelmann
+      secondary: rafaela-costa
+    ai_image:
+      keywords: ["prompt", "midjourney", "dall-e", "flux", "gerar imagem", "image generation", "AI image"]
+      primary: prompt-engineer
+      secondary: mike-winkelmann
+    caption:
+      keywords: ["legenda", "caption", "copy", "texto do post", "hashtags", "CTA"]
+      primary: caption-writer
+      secondary: gary-vee
+    batch_content:
+      keywords: ["batch", "lote", "vários posts", "semana de conteúdo", "multiple posts"]
+      primary: gary-vee
+      secondary: social-chief
+      workflow: wf-content-batch

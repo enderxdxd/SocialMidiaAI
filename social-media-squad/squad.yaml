@@ -1,0 +1,106 @@
+name: social-media-squad
+version: "1.0.0"
+short-title: "Social Media Squad"
+description: "Squad de criação de conteúdo visual para redes sociais — 6 experts de social media e design + 4 especialistas + 1 orquestrador. Gera posts, carrosséis, stories, reels covers e thumbnails de alto nível usando referências e brand guidelines."
+author: "Synkra AIOS"
+license: MIT
+slashPrefix: "social-media-squad"
+
+aios:
+  minVersion: "4.0.0"
+  type: squad
+
+tags:
+  - social-media
+  - instagram
+  - design
+  - content-creation
+  - visual-design
+  - carousels
+  - stories
+  - reels
+  - brand-consistency
+  - ai-image-generation
+
+components:
+  agents:
+    # Tier 0 — Orchestrator
+    - social-chief.md
+    # Tier 1 — Social Media Strategy & Creative Direction
+    - gary-vee.md
+    - chris-do.md
+    - ste-davies.md
+    # Tier 1 — Visual & Brand Experts
+    - mike-winkelmann.md
+    - tubik-studio.md
+    - rafaela-costa.md
+    # Tier 2 — Specialized Execution
+    - post-designer.md
+    - carousel-architect.md
+    - caption-writer.md
+    - prompt-engineer.md
+  tasks:
+    # Diagnosis & Review
+    - diagnose.md
+    - review.md
+    # Content Creation
+    - create-single-post.md
+    - create-carousel.md
+    - create-stories.md
+    - create-reel-cover.md
+    - create-thumbnail.md
+    # Strategy
+    - create-content-calendar.md
+    - define-visual-identity.md
+    - analyze-references.md
+  workflows:
+    - wf-post-creation.yaml
+    - wf-content-batch.yaml
+    - wf-visual-identity-setup.yaml
+  checklists:
+    - output-quality.md
+
+config:
+  extends: extend
+
+routing_matrix:
+  single_post:
+    primary: post-designer
+    secondary: prompt-engineer
+    triggers: ["post", "feed post", "single post", "imagem para feed", "post para instagram"]
+  carousel:
+    primary: carousel-architect
+    secondary: post-designer
+    triggers: ["carrossel", "carousel", "slides", "swipe post", "post com várias páginas"]
+  stories:
+    primary: post-designer
+    secondary: caption-writer
+    triggers: ["stories", "story", "insta story", "stories instagram"]
+  reel_cover:
+    primary: post-designer
+    secondary: prompt-engineer
+    triggers: ["reel cover", "capa de reel", "thumbnail reel", "reels"]
+  thumbnail:
+    primary: post-designer
+    secondary: chris-do
+    triggers: ["thumbnail", "miniatura", "capa youtube", "youtube thumbnail"]
+  content_strategy:
+    primary: gary-vee
+    secondary: ste-davies
+    triggers: ["estratégia", "content strategy", "calendário", "frequência", "engajamento"]
+  visual_identity:
+    primary: chris-do
+    secondary: tubik-studio
+    triggers: ["identidade visual", "visual identity", "brand guide", "paleta", "tipografia"]
+  reference_analysis:
+    primary: mike-winkelmann
+    secondary: rafaela-costa
+    triggers: ["referência", "reference", "inspiração", "benchmark", "análise visual"]
+  ai_image:
+    primary: prompt-engineer
+    secondary: mike-winkelmann
+    triggers: ["prompt", "midjourney", "dall-e", "flux", "gerar imagem", "image generation"]
+  caption:
+    primary: caption-writer
+    secondary: gary-vee
+    triggers: ["legenda", "caption", "copy", "texto do post", "hashtags", "CTA"]

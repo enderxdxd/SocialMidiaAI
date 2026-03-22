@@ -1,0 +1,72 @@
+workflow:
+  id: wf-post-creation
+  name: "Criação de Post para Redes Sociais"
+  trigger: "*create-post"
+  entry_agent: social-chief
+  estimated_duration: "15-30 minutes"
+  description: |
+    Workflow completo de criação de um post para redes sociais, desde briefing até
+    imagem gerada por IA + legenda + specs de publicação.
+
+  type: sequential
+  sequence:
+    - agent: chris-do
+      action: visual-direction
+      creates: creative_brief
+    - agent: prompt-engineer
+      action: generate-prompt
+      creates: image_prompt
+    - agent: post-designer
+      action: compose-layout
+      creates: composition_spec
+    - agent: caption-writer
+      action: write-caption
+      creates: caption_package
+
+phases:
+  - id: phase_1_brief
+    name: "Creative Brief & Visual Direction"
+    agent: chris-do
+    depends_on: []
+    description: "Define visual direction based on brand guidelines and content goal"
+    checkpoint:
+      gate: "Visual direction defined with composition, typography, and color specs"
+      veto: "HALT if brand guidelines not loaded"
+    outputs: [composition_approach, typography_treatment, color_application]
+
+  - id: phase_2_prompt
+    name: "AI Image Prompt Engineering"
+    agent: prompt-engineer
+    depends_on: [phase_1_brief]
+    description: "Build detailed AI image prompt with brand integration"
+    checkpoint:
+      gate: "Prompt includes all 7 layers + brand colors + text-safe zones + negative prompts"
+      veto: "HALT if prompt doesn't include brand hex colors"
+    outputs: [image_prompt, negative_prompt, ai_platform_config]
+
+  - id: phase_3_compose
+    name: "Post Composition & Layout"
+    agent: post-designer
+    depends_on: [phase_2_prompt]
+    description: "Compose final post layout with text overlay and brand elements"
+    checkpoint:
+      gate: "Layout complete with text hierarchy, brand elements, mobile-legible"
+      veto: "HALT if text is not legible at mobile size"
+    outputs: [composition_spec, brand_element_placement]
+
+  - id: phase_4_caption
+    name: "Caption & Hashtags"
+    agent: caption-writer
+    depends_on: [phase_3_compose]
+    description: "Write caption with hook, body, CTA, and hashtag strategy"
+    checkpoint:
+      gate: "Caption has hook (< 125 chars), body, CTA, and 5-15 relevant hashtags"
+      veto: "HALT if caption has no clear CTA"
+    outputs: [caption, hashtags, posting_notes]
+
+completion_criteria:
+  - "AI image prompt generated with full brand alignment"
+  - "Composition spec defines exact layout for the post"
+  - "Caption written with hook + body + CTA + hashtags"
+  - "Platform dimensions and specs verified"
+  - "Overall quality score >= 7.0"

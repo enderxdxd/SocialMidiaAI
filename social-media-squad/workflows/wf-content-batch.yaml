@@ -1,0 +1,51 @@
+workflow:
+  id: wf-content-batch
+  name: "Criação de Conteúdo em Lote"
+  trigger: "*batch-content"
+  entry_agent: social-chief
+  estimated_duration: "1-2 hours"
+  description: |
+    Workflow para criação de múltiplos posts de uma vez, baseado em content pillars
+    e calendário editorial.
+
+  type: parallel-then-merge
+  phases:
+    - id: phase_1_planning
+      name: "Content Planning"
+      agent: gary-vee
+      description: "Define content pillars and assign topics to formats"
+      outputs: [content_plan, topic_list]
+
+    - id: phase_2_visual_system
+      name: "Visual System Definition"
+      agent: chris-do
+      depends_on: [phase_1_planning]
+      description: "Define consistent visual system for the batch"
+      outputs: [visual_system, prompt_template]
+
+    - id: phase_3_parallel_creation
+      name: "Parallel Content Creation"
+      depends_on: [phase_2_visual_system]
+      parallel:
+        - agent: post-designer
+          action: create-posts
+          count: "based on plan"
+        - agent: carousel-architect
+          action: create-carousels
+          count: "based on plan"
+        - agent: prompt-engineer
+          action: generate-all-prompts
+          count: "based on plan"
+      outputs: [all_compositions, all_prompts]
+
+    - id: phase_4_captions
+      name: "All Captions"
+      agent: caption-writer
+      depends_on: [phase_3_parallel_creation]
+      outputs: [all_captions]
+
+    - id: phase_5_review
+      name: "Quality Review"
+      agent: social-chief
+      depends_on: [phase_4_captions]
+      outputs: [reviewed_batch]

@@ -1,0 +1,102 @@
+# ═══════════════════════════════════════════════════════════════════
+# Squad: Social Media Squad
+# Domain: Social Media Content Creation
+# Version: 1.0.0
+# ═══════════════════════════════════════════════════════════════════
+
+squad:
+  name: social-media-squad
+  display_name: "Social Media Squad"
+  version: "1.0.0"
+  domain: "Social Media Content Creation"
+  description: |
+    Squad completo de criação de conteúdo visual para redes sociais. Combina estrategistas
+    de social media de classe mundial (Gary Vee, Chris Do, Ste Davies) com artistas visuais
+    e designers (Beeple, Tubik Studio, Rafaela Costa) e especialistas funcionais em design de
+    posts, carrosséis, captions e engenharia de prompts para IA generativa.
+
+    Gera posts de alto nível visual usando referências, brand guidelines e AI image generation.
+    Suporta Instagram (feed, stories, reels, carrosséis), LinkedIn, TikTok e YouTube thumbnails.
+
+    Quatro domínios: estratégia (planejamento e calendário), criação visual (design e prompt
+    engineering), copywriting (legendas e CTAs), e produção (geração de assets finais).
+  keywords: [social-media, instagram, design, content, carousel, stories, reels, ai-image, brand, visual]
+  entry_agent: social-chief
+  created_at: "2026-03-21"
+
+tiers:
+  tier_0:
+    name: "Orchestration"
+    agents: [social-chief]
+    purpose: "Triage, routing, quality control, content type matching"
+  tier_1:
+    name: "Strategy & Creative Direction"
+    agents: [gary-vee, chris-do, ste-davies, mike-winkelmann, tubik-studio, rafaela-costa]
+    purpose: "Social media strategy, visual direction, brand aesthetics, reference analysis"
+  tier_2:
+    name: "Execution Specialists"
+    agents: [post-designer, carousel-architect, caption-writer, prompt-engineer]
+    purpose: "Post design, carousel architecture, caption writing, AI image prompt engineering"
+
+agents:
+  social-chief:        { file: agents/social-chief.md, tier: 0, icon: "📱", focus: "Triage, routing, content type matching" }
+  gary-vee:            { file: agents/gary-vee.md, tier: 1, icon: "🔥", focus: "Content strategy, platform optimization, volume mindset" }
+  chris-do:            { file: agents/chris-do.md, tier: 1, icon: "🎯", focus: "Visual branding, typography, premium design direction" }
+  ste-davies:          { file: agents/ste-davies.md, tier: 1, icon: "📊", focus: "Social media strategy, audience growth, engagement" }
+  mike-winkelmann:     { file: agents/mike-winkelmann.md, tier: 1, icon: "🎨", focus: "Bold visual art, daily creation, AI-assisted art direction" }
+  tubik-studio:        { file: agents/tubik-studio.md, tier: 1, icon: "✨", focus: "UI illustration, clean visual systems, brand illustration" }
+  rafaela-costa:       { file: agents/rafaela-costa.md, tier: 1, icon: "🇧🇷", focus: "Design brasileiro, social media BR, estética tropical" }
+  post-designer:       { file: agents/post-designer.md, tier: 2, icon: "🖼️", focus: "Feed posts, stories, reel covers, visual composition" }
+  carousel-architect:  { file: agents/carousel-architect.md, tier: 2, icon: "📑", focus: "Multi-slide carousel design, information architecture" }
+  caption-writer:      { file: agents/caption-writer.md, tier: 2, icon: "✍️", focus: "Captions, CTAs, hashtags, engagement copy" }
+  prompt-engineer:     { file: agents/prompt-engineer.md, tier: 2, icon: "🤖", focus: "AI image prompts for Flux, DALL-E, Midjourney" }
+
+handoffs:
+  social-chief: { routes_to: [gary-vee, chris-do, ste-davies, mike-winkelmann, tubik-studio, rafaela-costa, post-designer, carousel-architect, caption-writer, prompt-engineer] }
+  gary-vee: { escalates_to: [social-chief] }
+  chris-do: { escalates_to: [social-chief] }
+  ste-davies: { escalates_to: [social-chief] }
+  mike-winkelmann: { escalates_to: [social-chief] }
+  tubik-studio: { escalates_to: [social-chief] }
+  rafaela-costa: { escalates_to: [social-chief] }
+  post-designer: { escalates_to: [social-chief] }
+  carousel-architect: { escalates_to: [social-chief] }
+  caption-writer: { escalates_to: [social-chief] }
+  prompt-engineer: { escalates_to: [social-chief] }
+
+cross_squad_integration:
+  brand-squad:
+    purpose: "Brand guidelines, positioning, archetype para consistência visual"
+    handoff_trigger: "Quando precisa de brand DNA ou identidade de marca"
+    receives: [brand-guidelines, archetype-map, positioning-statement]
+  copy-squad:
+    purpose: "Copy avançado para captions de alta conversão"
+    handoff_trigger: "Quando a caption precisa de técnicas avançadas de persuasão"
+    receives: [headline, bullets, cta-framework]
+  design-squad:
+    purpose: "Design system tokens e componentes para consistência"
+    handoff_trigger: "Quando precisa de design tokens ou component specs"
+    receives: [design-tokens, color-system, typography-scale]
+
+cross_cutting:
+  quality_standards: { min_score: 7.0 }
+
+platform_specs:
+  instagram:
+    feed_post: { width: 1080, height: 1080, format: "1:1 square" }
+    feed_portrait: { width: 1080, height: 1350, format: "4:5 portrait" }
+    story: { width: 1080, height: 1920, format: "9:16 vertical" }
+    carousel: { width: 1080, height: 1080, max_slides: 10, format: "1:1 square" }
+    reel_cover: { width: 1080, height: 1920, format: "9:16 vertical" }
+  linkedin:
+    post: { width: 1200, height: 627, format: "1.91:1 landscape" }
+    carousel_pdf: { width: 1080, height: 1080, format: "1:1 square" }
+  tiktok:
+    cover: { width: 1080, height: 1920, format: "9:16 vertical" }
+  youtube:
+    thumbnail: { width: 1280, height: 720, format: "16:9 landscape" }
+
+settings:
+  activation:
+    prefix: "social-media-squad"
+    example: "@social-media-squad:post-designer"
